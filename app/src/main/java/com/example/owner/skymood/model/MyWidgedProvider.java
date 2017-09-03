@@ -23,7 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
- class MyWidgedProvider extends AppWidgetProvider {
+public class MyWidgedProvider extends AppWidgetProvider {
 
     private static final String ACTION_CLICK = "ACTION_CLICK";
     private static String city;

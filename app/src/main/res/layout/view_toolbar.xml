@@ -1,4 +1,5 @@
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view_toolbar"
     android:layout_width="match_parent"
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/title_toolbar"
         android:textColor="@color/colorPrimaryText"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/view_toolbar_iv_add_favourite"
@@ -25,6 +26,6 @@
         android:layout_gravity="end"
         android:clickable="true"
         android:src="@drawable/icon_add_favourite"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
 </android.support.v7.widget.Toolbar>

@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.owner.skymood.adapters.CustomPagerAdapter;
@@ -19,13 +18,17 @@ import com.example.owner.skymood.asyncTasks.APIDataGetterAsyncTask;
 import com.example.owner.skymood.asyncTasks.GetHourlyTask;
 import com.example.owner.skymood.asyncTasks.GetMoreInfoTask;
 import com.example.owner.skymood.asyncTasks.GetWeeklyTask;
+import com.example.owner.skymood.base.AbstractActivity;
+import com.example.owner.skymood.base.LayoutResId;
+import com.example.owner.skymood.databinding.ActivityMainBinding;
 import com.example.owner.skymood.fragments.CurrentWeatherFragment;
 import com.example.owner.skymood.fragments.HourlyWeatherFragment;
 import com.example.owner.skymood.fragments.ICommunicator;
 import com.example.owner.skymood.fragments.MoreInfoFragment;
 import com.example.owner.skymood.model.SearchedLocation;
 
-public class MainActivity extends AppCompatActivity implements ICommunicator {
+@LayoutResId(layoutId = R.layout.activity_main)
+public class MainActivity extends AbstractActivity<ActivityMainBinding> implements ICommunicator {
 
     public static final int REQUEST_CODE_SEARCHED_LOCATIONS = 5;
     public static final int NUMBER_OF_PAGES = 3;
@@ -37,33 +40,37 @@ public class MainActivity extends AppCompatActivity implements ICommunicator {
     private static final long BACK_BUTTON_MIN_INTERVAL = 1000L;
     private static final long BACK_BUTTON_TOAST_DELAY = 1200L;
 
-    private ViewPager pager;
-    private Toolbar toolbar;
-    private LinearLayout layout;
     private CustomPagerAdapter adapter;
     private Handler handler = new Handler();
     private long lastClick;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //used for changing the background
-        layout = (LinearLayout) findViewById(R.id.activity_main_container);
 
         //setting view_toolbar
-        toolbar = (Toolbar) findViewById(R.id.main_activity_view_tool_bar);
-        setSupportActionBar(toolbar);
+//        initToolbar();
+
+        //setting view pager adapter
+        initPager();
+    }
+
+    private void initToolbar() {
+
+        setSupportActionBar((Toolbar) binding.mainActivityViewToolBar);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         }
+    }
 
-        //setting view pager adapter
+    private void initPager() {
+
         adapter = new CustomPagerAdapter(getSupportFragmentManager(), this);
-        pager = (ViewPager) findViewById(R.id.activity_main_view_pager);
+
+        ViewPager pager = binding.activityMainViewPager;
         pager.setOffscreenPageLimit(NUMBER_OF_PAGES);
         pager.setAdapter(adapter);
     }
@@ -78,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicator {
     @Override
     public void onBackPressed() {
 
+        ViewPager pager = binding.activityMainViewPager;
         if (pager.getCurrentItem() == CURRENT_WEATHER_FRAGMENT_INDEX) {
             onBack();
         } else {
@@ -152,14 +160,16 @@ public class MainActivity extends AppCompatActivity implements ICommunicator {
 
     public Toolbar getToolbar() {
 
-        return this.toolbar;
+        View root = binding.getRoot();
+        //TODO see why not happening with the binding
+        return (Toolbar) root.findViewById(R.id.main_activity_view_tool_bar);
     }
 
     public void changeBackground(String partOfDay) {
 
         boolean isNight = partOfDay.equals(NIGHT);
         int background = isNight ? R.drawable.background_night : R.drawable.background_day;
-        layout.setBackgroundResource(background);
+        binding.getRoot().setBackgroundResource(background);
     }
 
     private void onBack() {
@@ -172,14 +182,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicator {
             final Toast toast = Toast.makeText(this, R.string.lbl_press_back_btn_again_to_exit, Toast.LENGTH_LONG);
             toast.show();
 
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    toast.cancel();
-                }
-            }, BACK_BUTTON_TOAST_DELAY);
+            handler.postDelayed(toast::cancel, BACK_BUTTON_TOAST_DELAY);
         } else {
             this.finish();
             System.exit(0);
