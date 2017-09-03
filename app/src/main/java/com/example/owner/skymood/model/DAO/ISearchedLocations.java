@@ -4,9 +4,6 @@ import com.example.owner.skymood.model.SearchedLocation;
 
 import java.util.ArrayList;
 
-/**
- * Created by owner on 05/04/2016.
- */
 public interface ISearchedLocations {
 
     ArrayList<SearchedLocation> getAllSearchedLocations();

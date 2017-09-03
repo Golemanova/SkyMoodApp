@@ -10,9 +10,6 @@ import com.example.owner.skymood.model.MyLocation;
 
 import java.util.ArrayList;
 
-/**
- * Created by owner on 05/04/2016.
- */
 public class MyLocationDAO implements IMyLocationDAO{
 
     private static MyLocationDAO instance;

@@ -3,9 +3,6 @@ package com.example.owner.skymood.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Golemanovaa on 5.4.2016 г..
- */
 public class LocationPreference {
 
     private static LocationPreference instance = null;

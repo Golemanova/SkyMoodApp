@@ -23,10 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-/**
- * Created by Golemanovaa on 10.4.2016 г..
- */
-public class MyWidgedProvider extends AppWidgetProvider {
+ class MyWidgedProvider extends AppWidgetProvider {
 
     private static final String ACTION_CLICK = "ACTION_CLICK";
     private static String city;
@@ -148,7 +145,7 @@ public class MyWidgedProvider extends AppWidgetProvider {
                 JSONObject observation = (JSONObject) jsonData.get("current_observation");
                 String condition = observation.getString("weather");
                 String temp = observation.getString("temp_c");
-                String icon = observation.getString("widget_layout_iv_icon");
+                String icon = observation.getString("icon");
 
 
                 Field field = R.drawable.class.getDeclaredField(icon);

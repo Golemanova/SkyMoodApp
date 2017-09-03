@@ -2,9 +2,6 @@ package com.example.owner.skymood.model;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by owner on 05/04/2016.
- */
 public class WeeklyWeather {
 
     private String day;

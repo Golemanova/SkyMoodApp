@@ -4,6 +4,7 @@
 
     <string name="lbl_something_went_wrong">Something went wrong :(</string>
     <string name="lbl_press_back_btn_again_to_exit">Press back button again to exit</string>
+    <string name="msg_connect_to_internet">Please connect to Internet</string>
 
     <!-- Toolbar -->
     <string name="title_toolbar">SKY MOOD°</string>

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by owner on 10/04/2016.
+ * Created by Golemanovaa on 10/04/2016.
  */
 public class GetWeeklyTask extends AsyncTask<String, Void, Void> {
 

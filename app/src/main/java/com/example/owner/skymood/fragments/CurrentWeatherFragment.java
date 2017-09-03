@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -289,7 +288,7 @@ public class CurrentWeatherFragment extends Fragment implements Slidable {
                 countryCode = locPref.getCountryCode();
                 getWeatherInfoFromSharedPref();
             } else {
-                feelsLike.setText("Please connect to Internet");
+                feelsLike.setText(getString(R.string.msg_connect_to_internet));
             }
         }
 
@@ -303,9 +302,9 @@ public class CurrentWeatherFragment extends Fragment implements Slidable {
                         manager.insertMyLocation(myLoc);
                         citiesSpinner.add(city + ", " + country);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(context, "location inserted to MyLocations", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Location inserted to MyLocations", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(context, "location already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Location already exists", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

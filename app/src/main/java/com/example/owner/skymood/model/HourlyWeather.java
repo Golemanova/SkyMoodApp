@@ -2,9 +2,6 @@ package com.example.owner.skymood.model;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by owner on 04/04/2016.
- */
 public class HourlyWeather {
 
     private String hour;

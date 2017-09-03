@@ -3,9 +3,6 @@ package com.example.owner.skymood.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by owner on 05/04/2016.
- */
 public class SearchedLocation implements Parcelable {
     private long id;
     private String city;

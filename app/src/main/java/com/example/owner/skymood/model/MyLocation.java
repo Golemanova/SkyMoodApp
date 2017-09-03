@@ -1,8 +1,5 @@
 package com.example.owner.skymood.model;
 
-/**
- * Created by owner on 10/04/2016.
- */
 public class MyLocation {
 
     private long id;

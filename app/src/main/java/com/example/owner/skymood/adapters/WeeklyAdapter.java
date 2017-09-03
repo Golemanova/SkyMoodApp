@@ -12,7 +12,7 @@ import com.example.owner.skymood.model.WeeklyWeather;
 import java.util.ArrayList;
 
 /**
- * Created by owner on 05/04/2016.
+ * Created by Golemanovaa on 05/04/2016.
  */
 public class WeeklyAdapter extends RecyclerView.Adapter<HourlyWeekViewHolder> {
 
@@ -20,6 +20,7 @@ public class WeeklyAdapter extends RecyclerView.Adapter<HourlyWeekViewHolder> {
     private Context context;
 
     public WeeklyAdapter(ArrayList<WeeklyWeather> weathers, Context context) {
+
         this.weathers = weathers;
         this.context = context;
     }
@@ -27,6 +28,7 @@ public class WeeklyAdapter extends RecyclerView.Adapter<HourlyWeekViewHolder> {
 
     @Override
     public HourlyWeekViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.row_week, parent, false);
         return new HourlyWeekViewHolder(view);
@@ -34,15 +36,17 @@ public class WeeklyAdapter extends RecyclerView.Adapter<HourlyWeekViewHolder> {
 
     @Override
     public void onBindViewHolder(HourlyWeekViewHolder holder, int position) {
+
         WeeklyWeather weather = weathers.get(position);
         holder.getIcon().setImageBitmap(weather.getIcon());
-        holder.getTemp().setText(weather.getMax() + " / " + weather.getMin()+"°");
+        holder.getTemp().setText(weather.getMax() + " / " + weather.getMin() + "°");
         holder.getCondition().setText(weather.getCondition());
         holder.getHour().setText(weather.getDay());
     }
 
     @Override
     public int getItemCount() {
+
         return weathers.size();
     }
 }

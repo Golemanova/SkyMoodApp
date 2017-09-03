@@ -18,23 +18,23 @@ import com.example.owner.skymood.fragments.Slidable;
 public class CustomPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
-    private FragmentManager mFragmentManager;
     private Slidable[] fragmentsArray = new Slidable[getCount()];
 
     public CustomPagerAdapter(FragmentManager fm, Context context) {
+
         super(fm);
         this.context = context;
-        mFragmentManager = fm;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if(fragmentsArray[position]!=null) {
+
+        if (fragmentsArray[position] != null) {
             return (Fragment) fragmentsArray[position];
         }
 
         Slidable fragment = null;
-        switch(position){
+        switch (position) {
             case 0:
                 //CurrentWeatherConditionFragment();
                 fragment = new CurrentWeatherFragment();
@@ -52,29 +52,33 @@ public class CustomPagerAdapter extends FragmentStatePagerAdapter {
                 fragment.setContext(context);
                 break;
         }
-        fragmentsArray[position] =  fragment;
-        return (Fragment)fragment;
+        fragmentsArray[position] = fragment;
+        return (Fragment) fragment;
     }
 
     @Override
     public int getCount() {
+
         return MainActivity.NUMBER_OF_PAGES;
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {  switch(position){
-        case 0:
-            return "\uD83C\uDF08 CURRENT";
-        case 1:
-            return "⛅ Hourly&Weekly";
-        case 2:
-            return "⚡ MORE INFO";
-    }
+    public CharSequence getPageTitle(int position) {
+
+        switch (position) {
+            case 0:
+                return "\uD83C\uDF08 CURRENT";
+            case 1:
+                return "⛅ Hourly&Weekly";
+            case 2:
+                return "⚡ MORE INFO";
+        }
         return null;
     }
 
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+
     }
 }

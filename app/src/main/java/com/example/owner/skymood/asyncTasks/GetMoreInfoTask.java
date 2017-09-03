@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 
-import com.example.owner.skymood.MainActivity;
 import com.example.owner.skymood.fragments.MoreInfoFragment;
 
 import org.json.JSONException;
@@ -19,13 +18,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
- * Created by owner on 11/04/2016.
+ * Created by Golemanovaa on 11/04/2016.
  */
 public class GetMoreInfoTask extends AsyncTask<String, Void, Void> {
 
     private final static String API_KEY = "7fc23227bbbc9a36";
-    private Context context;
-    private MainActivity activity;
     private MoreInfoFragment fragment;
 
     private String dayTxt;
@@ -45,9 +42,7 @@ public class GetMoreInfoTask extends AsyncTask<String, Void, Void> {
 
     public GetMoreInfoTask(Context context, Fragment fragment) {
 
-        this.context = context;
         this.fragment = (MoreInfoFragment) fragment;
-        activity = (MainActivity) context;
     }
 
     @Override

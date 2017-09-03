@@ -18,17 +18,18 @@ import com.example.owner.skymood.model.MyLocationManager;
 import java.util.ArrayList;
 
 /**
- * Created by owner on 08/04/2016.
+ * Created by Golemanovaa on 08/04/2016.
  */
 public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.CardViewHolder>{
 
     private Context context;
     private ArrayList<MyLocation> data;
     private int lastCheckedPosition;
-    LocationPreference pref;
-    MyLocationManager manager;
+    private LocationPreference pref;
+    private MyLocationManager manager;
 
     public MyCardViewAdapter(Context context, ArrayList<MyLocation> data) {
+
         this.context = context;
         this.data = data;
         lastCheckedPosition = -1;
@@ -38,6 +39,7 @@ public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.Ca
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View root = inflater.inflate(R.layout.row_my_location, parent, false);
         return new CardViewHolder(root);
@@ -52,7 +54,7 @@ public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.Ca
         holder.code.setText(location.getCode());
 
 
-        if(pref.getCity() != null && location.getCity().equals(pref.getCity()) && location.getCountry().equals(pref.getCountry()))
+        if (pref.getCity() != null && location.getCity().equals(pref.getCity()) && location.getCountry().equals(pref.getCountry()))
             holder.radio.setChecked(true);
         else
             holder.radio.setChecked(position == lastCheckedPosition);
@@ -60,10 +62,18 @@ public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.Ca
 
     @Override
     public int getItemCount() {
+
         return data.size();
     }
 
-    public class CardViewHolder extends RecyclerView.ViewHolder{
+    private void removeAt(int position) {
+
+        data.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, data.size());
+    }
+
+    class CardViewHolder extends RecyclerView.ViewHolder {
 
         TextView city;
         TextView country;
@@ -71,7 +81,8 @@ public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.Ca
         RadioButton radio;
         ImageView erase;
 
-        public CardViewHolder(View itemView) {
+        CardViewHolder(View itemView) {
+
             super(itemView);
 
             this.city = (TextView) itemView.findViewById(R.id.row_my_location_tv_city);
@@ -84,6 +95,7 @@ public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.Ca
             radio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     lastCheckedPosition = getAdapterPosition();
                     notifyItemRangeChanged(0, data.size());
                     String cityTxt = city.getText().toString();
@@ -97,24 +109,18 @@ public class MyCardViewAdapter extends RecyclerView.Adapter<MyCardViewAdapter.Ca
             erase.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     int position = getAdapterPosition();
                     manager.deleteMyLocation(data.get(position));
                     removeAt(position);
                     if (position < lastCheckedPosition) {
                         lastCheckedPosition--;
-                    }
-                    else if(position == lastCheckedPosition){
+                    } else if (position == lastCheckedPosition) {
                         pref.removeInfo();
                     }
 
                 }
             });
         }
-    }
-
-    public void removeAt(int position) {
-        data.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, data.size());
     }
 }

@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.example.owner.skymood.MainActivity;
 import com.example.owner.skymood.fragments.HourlyWeatherFragment;
 import com.example.owner.skymood.model.HourlyWeather;
 
@@ -22,13 +21,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by owner on 09/04/2016.
+ * Created by Golemanovaa on 09/04/2016.
  */
 public class GetHourlyTask extends AsyncTask<String, Void, Void> {
 
     private final static String API_KEY = "9d48021d05e97609";
     private Context context;
-    private MainActivity activity;
     private HourlyWeatherFragment fragment;
     private ArrayList<HourlyWeather> hourlyWeather;
 
@@ -36,7 +34,6 @@ public class GetHourlyTask extends AsyncTask<String, Void, Void> {
 
         this.context = context;
         this.fragment = (HourlyWeatherFragment) fragment;
-        activity = (MainActivity) context;
         this.hourlyWeather = hourlyWeather;
     }
 

@@ -6,9 +6,6 @@ import com.example.owner.skymood.model.DAO.SearchedLocationsDAO;
 
 import java.util.ArrayList;
 
-/**
- * Created by owner on 05/04/2016.
- */
 public class SearchedLocationManager {
     private static SearchedLocationManager ourInstance;
     SearchedLocationsDAO locationsDAO;
